@@ -11,18 +11,18 @@ export class UserCoreResolver {
     @InjectRepository() private readonly userRepository: userService
   ) {}
 
-  @Query((returns) => User)
-  async me() {
+  @Query((returns) => User, { nullable: true })
+  async me(): Promise<User> {
     return await this.userRepository.findOne({ id: '' });
   }
 
   @Query((returns) => [User])
-  users() {
-    return this.userRepository.find();
+  async users(): Promise<User[]> {
+    return await this.userRepository.find();
   }
 
   @Mutation((returns) => User)
-  async createUser(@Arg('name') name: string) {
+  async createUser(@Arg('name') name: string): Promise<User> {
     return await this.userRepository.save({ name });
   }
 }

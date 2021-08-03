@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server';
+import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 import { buildSchema } from 'type-graphql';
 import { Connection, createConnection, useContainer } from 'typeorm';
 import { Container as ContDI } from 'typedi';
@@ -35,6 +36,8 @@ async function bootstrap() {
   //Config server
   const server = new ApolloServer({
     schema,
+    //Use ApolloServerPluginLandingPageGraphQLPlayground to disable studio landing page
+    plugins: [ApolloServerPluginLandingPageGraphQLPlayground({})],
   });
   //Init Server
   const { url } = await server.listen(5000);

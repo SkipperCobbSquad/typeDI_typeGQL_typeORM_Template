@@ -2,7 +2,7 @@ import { Resolver, Query, Mutation, Arg } from 'type-graphql';
 import { Service } from 'typedi';
 import { InjectRepository } from 'typeorm-typedi-extensions';
 import { User } from '../entities/User.entity';
-import userService from '../Services/user.service';
+import userService from '../services/user.service';
 
 @Service()
 @Resolver()

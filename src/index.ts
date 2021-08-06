@@ -59,6 +59,7 @@ async function bootstrap() {
   const schema = await buildSchema({
     resolvers: [UserCoreResolver], //[src/resolvers/*.resolver.{ts, js}]
     container: ContDI,
+    pubSub,
   });
 
   // subscriptions-transport-ws
